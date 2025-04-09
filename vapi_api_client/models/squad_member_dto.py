@@ -1,3 +1,4 @@
+from collections.abc import Mapping
 from typing import TYPE_CHECKING, Any, TypeVar, Union, cast
 
 from attrs import define as _attrs_define
@@ -71,12 +72,12 @@ class SquadMemberDTO:
         return field_dict
 
     @classmethod
-    def from_dict(cls: type[T], src_dict: dict[str, Any]) -> T:
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.assistant_overrides import AssistantOverrides
         from ..models.create_assistant_dto import CreateAssistantDTO
         from ..models.transfer_destination_assistant import TransferDestinationAssistant
 
-        d = src_dict.copy()
+        d = dict(src_dict)
 
         def _parse_assistant_id(data: object) -> Union[None, Unset, str]:
             if data is None:

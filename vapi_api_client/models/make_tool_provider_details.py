@@ -1,3 +1,4 @@
+from collections.abc import Mapping
 from typing import TYPE_CHECKING, Any, TypeVar, Union
 
 from attrs import define as _attrs_define
@@ -78,10 +79,10 @@ class MakeToolProviderDetails:
         return field_dict
 
     @classmethod
-    def from_dict(cls: type[T], src_dict: dict[str, Any]) -> T:
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.tool_template_setup import ToolTemplateSetup
 
-        d = src_dict.copy()
+        d = dict(src_dict)
         type_ = MakeToolProviderDetailsType(d.pop("type"))
 
         template_url = d.pop("templateUrl", UNSET)

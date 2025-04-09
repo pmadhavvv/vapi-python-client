@@ -1,3 +1,4 @@
+from collections.abc import Mapping
 from typing import TYPE_CHECKING, Any, TypeVar, Union
 
 from attrs import define as _attrs_define
@@ -190,13 +191,13 @@ class Log:
         return field_dict
 
     @classmethod
-    def from_dict(cls: type[T], src_dict: dict[str, Any]) -> T:
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.error import Error
         from ..models.log_request_body import LogRequestBody
         from ..models.log_request_headers import LogRequestHeaders
         from ..models.log_response_body import LogResponseBody
 
-        d = src_dict.copy()
+        d = dict(src_dict)
         time = d.pop("time")
 
         org_id = d.pop("orgId")

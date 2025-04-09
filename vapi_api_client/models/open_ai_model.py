@@ -1,3 +1,4 @@
+from collections.abc import Mapping
 from typing import TYPE_CHECKING, Any, TypeVar, Union, cast
 
 from attrs import define as _attrs_define
@@ -191,7 +192,7 @@ class OpenAIModel:
         return field_dict
 
     @classmethod
-    def from_dict(cls: type[T], src_dict: dict[str, Any]) -> T:
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.create_custom_knowledge_base_dto import CreateCustomKnowledgeBaseDTO
         from ..models.create_dtmf_tool_dto import CreateDtmfToolDTO
         from ..models.create_end_call_tool_dto import CreateEndCallToolDTO
@@ -203,7 +204,7 @@ class OpenAIModel:
         from ..models.create_voicemail_tool_dto import CreateVoicemailToolDTO
         from ..models.open_ai_message import OpenAIMessage
 
-        d = src_dict.copy()
+        d = dict(src_dict)
         provider = OpenAIModelProvider(d.pop("provider"))
 
         model = OpenAIModelModel(d.pop("model"))

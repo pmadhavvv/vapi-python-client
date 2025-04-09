@@ -1,4 +1,5 @@
 import datetime
+from collections.abc import Mapping
 from typing import TYPE_CHECKING, Any, TypeVar, Union
 
 from attrs import define as _attrs_define
@@ -159,7 +160,7 @@ class Template:
         return field_dict
 
     @classmethod
-    def from_dict(cls: type[T], src_dict: dict[str, Any]) -> T:
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.create_dtmf_tool_dto import CreateDtmfToolDTO
         from ..models.create_end_call_tool_dto import CreateEndCallToolDTO
         from ..models.create_function_tool_dto import CreateFunctionToolDTO
@@ -172,7 +173,7 @@ class Template:
         from ..models.make_tool_provider_details import MakeToolProviderDetails
         from ..models.tool_template_metadata import ToolTemplateMetadata
 
-        d = src_dict.copy()
+        d = dict(src_dict)
         type_ = TemplateType(d.pop("type"))
 
         id = d.pop("id")

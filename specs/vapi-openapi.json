@@ -11437,17 +11437,6 @@
           },
           "models": {
             "type": "array",
-            "enum": [
-              "gpt-4o-2024-08-06",
-              "gpt-4o-mini-2024-07-18",
-              "gpt-4o-2024-05-13",
-              "gpt-4-turbo-2024-04-09",
-              "gpt-4-0125-preview",
-              "gpt-4-1106-preview",
-              "gpt-4-0613",
-              "gpt-35-turbo-0125",
-              "gpt-35-turbo-1106"
-            ],
             "example": [
               "gpt-4-0125-preview",
               "gpt-4-0613"
@@ -13602,23 +13591,6 @@
           },
           "clientMessages": {
             "type": "array",
-            "enum": [
-              "conversation-update",
-              "function-call",
-              "function-call-result",
-              "hang",
-              "language-changed",
-              "metadata",
-              "model-output",
-              "speech-update",
-              "status-update",
-              "transcript",
-              "tool-calls",
-              "tool-calls-result",
-              "transfer-update",
-              "user-interrupted",
-              "voice-input"
-            ],
             "example": [
               "conversation-update",
               "function-call",
@@ -13656,25 +13628,6 @@
           },
           "serverMessages": {
             "type": "array",
-            "enum": [
-              "conversation-update",
-              "end-of-call-report",
-              "function-call",
-              "hang",
-              "language-changed",
-              "language-change-detected",
-              "model-output",
-              "phone-call-control",
-              "speech-update",
-              "status-update",
-              "transcript",
-              "transcript[transcriptType=\"final\"]",
-              "tool-calls",
-              "transfer-destination-request",
-              "transfer-update",
-              "user-interrupted",
-              "voice-input"
-            ],
             "example": [
               "conversation-update",
               "end-of-call-report",
@@ -14259,23 +14212,6 @@
           },
           "clientMessages": {
             "type": "array",
-            "enum": [
-              "conversation-update",
-              "function-call",
-              "function-call-result",
-              "hang",
-              "language-changed",
-              "metadata",
-              "model-output",
-              "speech-update",
-              "status-update",
-              "transcript",
-              "tool-calls",
-              "tool-calls-result",
-              "transfer-update",
-              "user-interrupted",
-              "voice-input"
-            ],
             "example": [
               "conversation-update",
               "function-call",
@@ -14313,25 +14249,6 @@
           },
           "serverMessages": {
             "type": "array",
-            "enum": [
-              "conversation-update",
-              "end-of-call-report",
-              "function-call",
-              "hang",
-              "language-changed",
-              "language-change-detected",
-              "model-output",
-              "phone-call-control",
-              "speech-update",
-              "status-update",
-              "transcript",
-              "transcript[transcriptType=\"final\"]",
-              "tool-calls",
-              "transfer-destination-request",
-              "transfer-update",
-              "user-interrupted",
-              "voice-input"
-            ],
             "example": [
               "conversation-update",
               "end-of-call-report",
@@ -16356,23 +16273,6 @@
           },
           "clientMessages": {
             "type": "array",
-            "enum": [
-              "conversation-update",
-              "function-call",
-              "function-call-result",
-              "hang",
-              "language-changed",
-              "metadata",
-              "model-output",
-              "speech-update",
-              "status-update",
-              "transcript",
-              "tool-calls",
-              "tool-calls-result",
-              "transfer-update",
-              "user-interrupted",
-              "voice-input"
-            ],
             "example": [
               "conversation-update",
               "function-call",
@@ -16410,25 +16310,6 @@
           },
           "serverMessages": {
             "type": "array",
-            "enum": [
-              "conversation-update",
-              "end-of-call-report",
-              "function-call",
-              "hang",
-              "language-changed",
-              "language-change-detected",
-              "model-output",
-              "phone-call-control",
-              "speech-update",
-              "status-update",
-              "transcript",
-              "transcript[transcriptType=\"final\"]",
-              "tool-calls",
-              "transfer-destination-request",
-              "transfer-update",
-              "user-interrupted",
-              "voice-input"
-            ],
             "example": [
               "conversation-update",
               "end-of-call-report",
@@ -17055,23 +16936,6 @@
           },
           "clientMessages": {
             "type": "array",
-            "enum": [
-              "conversation-update",
-              "function-call",
-              "function-call-result",
-              "hang",
-              "language-changed",
-              "metadata",
-              "model-output",
-              "speech-update",
-              "status-update",
-              "transcript",
-              "tool-calls",
-              "tool-calls-result",
-              "transfer-update",
-              "user-interrupted",
-              "voice-input"
-            ],
             "example": [
               "conversation-update",
               "function-call",
@@ -17109,25 +16973,6 @@
           },
           "serverMessages": {
             "type": "array",
-            "enum": [
-              "conversation-update",
-              "end-of-call-report",
-              "function-call",
-              "hang",
-              "language-changed",
-              "language-change-detected",
-              "model-output",
-              "phone-call-control",
-              "speech-update",
-              "status-update",
-              "transcript",
-              "transcript[transcriptType=\"final\"]",
-              "tool-calls",
-              "transfer-destination-request",
-              "transfer-update",
-              "user-interrupted",
-              "voice-input"
-            ],
             "example": [
               "conversation-update",
               "end-of-call-report",
@@ -23095,17 +22940,6 @@
           },
           "models": {
             "type": "array",
-            "enum": [
-              "gpt-4o-2024-08-06",
-              "gpt-4o-mini-2024-07-18",
-              "gpt-4o-2024-05-13",
-              "gpt-4-turbo-2024-04-09",
-              "gpt-4-0125-preview",
-              "gpt-4-1106-preview",
-              "gpt-4-0613",
-              "gpt-35-turbo-0125",
-              "gpt-35-turbo-1106"
-            ],
             "example": [
               "gpt-4-0125-preview",
               "gpt-4-0613"
@@ -25482,17 +25316,6 @@
           },
           "models": {
             "type": "array",
-            "enum": [
-              "gpt-4o-2024-08-06",
-              "gpt-4o-mini-2024-07-18",
-              "gpt-4o-2024-05-13",
-              "gpt-4-turbo-2024-04-09",
-              "gpt-4-0125-preview",
-              "gpt-4-1106-preview",
-              "gpt-4-0613",
-              "gpt-35-turbo-0125",
-              "gpt-35-turbo-1106"
-            ],
             "example": [
               "gpt-4-0125-preview",
               "gpt-4-0613"

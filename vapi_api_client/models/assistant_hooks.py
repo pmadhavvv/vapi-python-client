@@ -1,3 +1,4 @@
+from collections.abc import Mapping
 from typing import TYPE_CHECKING, Any, TypeVar, Union
 
 from attrs import define as _attrs_define
@@ -58,11 +59,11 @@ class AssistantHooks:
         return field_dict
 
     @classmethod
-    def from_dict(cls: type[T], src_dict: dict[str, Any]) -> T:
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.assistant_hook_action_base import AssistantHookActionBase
         from ..models.assistant_hook_filter import AssistantHookFilter
 
-        d = src_dict.copy()
+        d = dict(src_dict)
         on = AssistantHooksOn(d.pop("on"))
 
         do = []

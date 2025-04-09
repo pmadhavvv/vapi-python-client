@@ -1,3 +1,4 @@
+from collections.abc import Mapping
 from typing import TYPE_CHECKING, Any, TypeVar, Union
 
 from attrs import define as _attrs_define
@@ -107,12 +108,12 @@ class ApiRequest:
         return field_dict
 
     @classmethod
-    def from_dict(cls: type[T], src_dict: dict[str, Any]) -> T:
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.api_request_metadata import ApiRequestMetadata
         from ..models.hook import Hook
         from ..models.json_schema import JsonSchema
 
-        d = src_dict.copy()
+        d = dict(src_dict)
         type_ = ApiRequestType(d.pop("type"))
 
         method = ApiRequestMethod(d.pop("method"))

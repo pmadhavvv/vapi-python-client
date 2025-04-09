@@ -1,3 +1,4 @@
+from collections.abc import Mapping
 from typing import TYPE_CHECKING, Any, TypeVar
 
 from attrs import define as _attrs_define
@@ -102,13 +103,13 @@ class Metrics:
         return field_dict
 
     @classmethod
-    def from_dict(cls: type[T], src_dict: dict[str, Any]) -> T:
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.metrics_bill_daily_breakdown import MetricsBillDailyBreakdown
         from ..models.metrics_call_count_daily_breakdown import MetricsCallCountDailyBreakdown
         from ..models.metrics_call_minutes_average_daily_breakdown import MetricsCallMinutesAverageDailyBreakdown
         from ..models.metrics_call_minutes_daily_breakdown import MetricsCallMinutesDailyBreakdown
 
-        d = src_dict.copy()
+        d = dict(src_dict)
         org_id = d.pop("orgId")
 
         range_start = d.pop("rangeStart")

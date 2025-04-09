@@ -1,4 +1,5 @@
 import datetime
+from collections.abc import Mapping
 from typing import TYPE_CHECKING, Any, TypeVar, Union, cast
 
 from attrs import define as _attrs_define
@@ -6,9 +7,9 @@ from attrs import field as _attrs_field
 from dateutil.parser import isoparse
 
 from ..models.assistant_background_sound import AssistantBackgroundSound
-from ..models.assistant_client_messages import AssistantClientMessages
+from ..models.assistant_client_messages_item import AssistantClientMessagesItem
 from ..models.assistant_first_message_mode import AssistantFirstMessageMode
-from ..models.assistant_server_messages import AssistantServerMessages
+from ..models.assistant_server_messages_item import AssistantServerMessagesItem
 from ..types import UNSET, Unset
 
 if TYPE_CHECKING:
@@ -155,16 +156,17 @@ class Assistant:
             reached.
             You can use neither of them, one of them, or both of them. By default, Twilio built-in detection is enabled
             while VoicemailTool is not.
-        client_messages (Union[Unset, AssistantClientMessages]): These are the messages that will be sent to your Client
-            SDKs. Default is conversation-update,function-call,hang,model-output,speech-update,status-update,transfer-
-            update,transcript,tool-calls,user-interrupted,voice-input. You can check the shape of the messages in
-            ClientMessage schema. Example: ['conversation-update', 'function-call', 'hang', 'model-output', 'speech-update',
-            'status-update', 'transfer-update', 'transcript', 'tool-calls', 'user-interrupted', 'voice-input'].
-        server_messages (Union[Unset, AssistantServerMessages]): These are the messages that will be sent to your Server
-            URL. Default is conversation-update,end-of-call-report,function-call,hang,speech-update,status-update,tool-
-            calls,transfer-destination-request,user-interrupted. You can check the shape of the messages in ServerMessage
-            schema. Example: ['conversation-update', 'end-of-call-report', 'function-call', 'hang', 'speech-update',
-            'status-update', 'tool-calls', 'transfer-destination-request', 'user-interrupted'].
+        client_messages (Union[Unset, list[AssistantClientMessagesItem]]): These are the messages that will be sent to
+            your Client SDKs. Default is conversation-update,function-call,hang,model-output,speech-update,status-
+            update,transfer-update,transcript,tool-calls,user-interrupted,voice-input. You can check the shape of the
+            messages in ClientMessage schema. Example: ['conversation-update', 'function-call', 'hang', 'model-output',
+            'speech-update', 'status-update', 'transfer-update', 'transcript', 'tool-calls', 'user-interrupted', 'voice-
+            input'].
+        server_messages (Union[Unset, list[AssistantServerMessagesItem]]): These are the messages that will be sent to
+            your Server URL. Default is conversation-update,end-of-call-report,function-call,hang,speech-update,status-
+            update,tool-calls,transfer-destination-request,user-interrupted. You can check the shape of the messages in
+            ServerMessage schema. Example: ['conversation-update', 'end-of-call-report', 'function-call', 'hang', 'speech-
+            update', 'status-update', 'tool-calls', 'transfer-destination-request', 'user-interrupted'].
         silence_timeout_seconds (Union[Unset, float]): How many seconds of silence to wait before ending the call.
             Defaults to 30.
 
@@ -294,8 +296,8 @@ class Assistant:
     voicemail_detection: Union[
         "GoogleVoicemailDetectionPlan", "OpenAIVoicemailDetectionPlan", "TwilioVoicemailDetectionPlan", Unset
     ] = UNSET
-    client_messages: Union[Unset, AssistantClientMessages] = UNSET
-    server_messages: Union[Unset, AssistantServerMessages] = UNSET
+    client_messages: Union[Unset, list[AssistantClientMessagesItem]] = UNSET
+    server_messages: Union[Unset, list[AssistantServerMessagesItem]] = UNSET
     silence_timeout_seconds: Union[Unset, float] = UNSET
     max_duration_seconds: Union[Unset, float] = UNSET
     background_sound: Union[Unset, AssistantBackgroundSound] = UNSET
@@ -564,13 +566,19 @@ class Assistant:
         else:
             voicemail_detection = self.voicemail_detection.to_dict()
 
-        client_messages: Union[Unset, str] = UNSET
+        client_messages: Union[Unset, list[str]] = UNSET
         if not isinstance(self.client_messages, Unset):
-            client_messages = self.client_messages.value
+            client_messages = []
+            for client_messages_item_data in self.client_messages:
+                client_messages_item = client_messages_item_data.value
+                client_messages.append(client_messages_item)
 
-        server_messages: Union[Unset, str] = UNSET
+        server_messages: Union[Unset, list[str]] = UNSET
         if not isinstance(self.server_messages, Unset):
-            server_messages = self.server_messages.value
+            server_messages = []
+            for server_messages_item_data in self.server_messages:
+                server_messages_item = server_messages_item_data.value
+                server_messages.append(server_messages_item)
 
         silence_timeout_seconds = self.silence_timeout_seconds
 
@@ -830,7 +838,7 @@ class Assistant:
         return field_dict
 
     @classmethod
-    def from_dict(cls: type[T], src_dict: dict[str, Any]) -> T:
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.analysis_plan import AnalysisPlan
         from ..models.anthropic_model import AnthropicModel
         from ..models.anyscale_model import AnyscaleModel
@@ -929,7 +937,7 @@ class Assistant:
         from ..models.vapi_voice import VapiVoice
         from ..models.xai_model import XaiModel
 
-        d = src_dict.copy()
+        d = dict(src_dict)
         id = d.pop("id")
 
         org_id = d.pop("orgId")
@@ -1341,19 +1349,19 @@ class Assistant:
 
         voicemail_detection = _parse_voicemail_detection(d.pop("voicemailDetection", UNSET))
 
+        client_messages = []
         _client_messages = d.pop("clientMessages", UNSET)
-        client_messages: Union[Unset, AssistantClientMessages]
-        if isinstance(_client_messages, Unset):
-            client_messages = UNSET
-        else:
-            client_messages = AssistantClientMessages(_client_messages)
+        for client_messages_item_data in _client_messages or []:
+            client_messages_item = AssistantClientMessagesItem(client_messages_item_data)
 
+            client_messages.append(client_messages_item)
+
+        server_messages = []
         _server_messages = d.pop("serverMessages", UNSET)
-        server_messages: Union[Unset, AssistantServerMessages]
-        if isinstance(_server_messages, Unset):
-            server_messages = UNSET
-        else:
-            server_messages = AssistantServerMessages(_server_messages)
+        for server_messages_item_data in _server_messages or []:
+            server_messages_item = AssistantServerMessagesItem(server_messages_item_data)
+
+            server_messages.append(server_messages_item)
 
         silence_timeout_seconds = d.pop("silenceTimeoutSeconds", UNSET)
 

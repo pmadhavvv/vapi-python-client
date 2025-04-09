@@ -45,7 +45,7 @@ from .assembly_ai_transcriber_language import AssemblyAITranscriberLanguage
 from .assembly_ai_transcriber_provider import AssemblyAITranscriberProvider
 from .assistant import Assistant
 from .assistant_background_sound import AssistantBackgroundSound
-from .assistant_client_messages import AssistantClientMessages
+from .assistant_client_messages_item import AssistantClientMessagesItem
 from .assistant_custom_endpointing_rule import AssistantCustomEndpointingRule
 from .assistant_custom_endpointing_rule_type import AssistantCustomEndpointingRuleType
 from .assistant_first_message_mode import AssistantFirstMessageMode
@@ -57,13 +57,13 @@ from .assistant_hooks_on import AssistantHooksOn
 from .assistant_metadata import AssistantMetadata
 from .assistant_overrides import AssistantOverrides
 from .assistant_overrides_background_sound import AssistantOverridesBackgroundSound
-from .assistant_overrides_client_messages import AssistantOverridesClientMessages
+from .assistant_overrides_client_messages_item import AssistantOverridesClientMessagesItem
 from .assistant_overrides_first_message_mode import AssistantOverridesFirstMessageMode
 from .assistant_overrides_metadata import AssistantOverridesMetadata
-from .assistant_overrides_server_messages import AssistantOverridesServerMessages
+from .assistant_overrides_server_messages_item import AssistantOverridesServerMessagesItem
 from .assistant_overrides_variable_values import AssistantOverridesVariableValues
 from .assistant_paginated_response import AssistantPaginatedResponse
-from .assistant_server_messages import AssistantServerMessages
+from .assistant_server_messages_item import AssistantServerMessagesItem
 from .auto_reload_plan import AutoReloadPlan
 from .azure_blob_storage_bucket_plan import AzureBlobStorageBucketPlan
 from .azure_credential import AzureCredential
@@ -71,7 +71,7 @@ from .azure_credential_provider import AzureCredentialProvider
 from .azure_credential_region import AzureCredentialRegion
 from .azure_credential_service import AzureCredentialService
 from .azure_open_ai_credential import AzureOpenAICredential
-from .azure_open_ai_credential_models import AzureOpenAICredentialModels
+from .azure_open_ai_credential_models_item import AzureOpenAICredentialModelsItem
 from .azure_open_ai_credential_provider import AzureOpenAICredentialProvider
 from .azure_open_ai_credential_region import AzureOpenAICredentialRegion
 from .azure_speech_transcriber import AzureSpeechTranscriber
@@ -204,16 +204,16 @@ from .create_assembly_ai_credential_dto import CreateAssemblyAICredentialDTO
 from .create_assembly_ai_credential_dto_provider import CreateAssemblyAICredentialDTOProvider
 from .create_assistant_dto import CreateAssistantDTO
 from .create_assistant_dto_background_sound import CreateAssistantDTOBackgroundSound
-from .create_assistant_dto_client_messages import CreateAssistantDTOClientMessages
+from .create_assistant_dto_client_messages_item import CreateAssistantDTOClientMessagesItem
 from .create_assistant_dto_first_message_mode import CreateAssistantDTOFirstMessageMode
 from .create_assistant_dto_metadata import CreateAssistantDTOMetadata
-from .create_assistant_dto_server_messages import CreateAssistantDTOServerMessages
+from .create_assistant_dto_server_messages_item import CreateAssistantDTOServerMessagesItem
 from .create_azure_credential_dto import CreateAzureCredentialDTO
 from .create_azure_credential_dto_provider import CreateAzureCredentialDTOProvider
 from .create_azure_credential_dto_region import CreateAzureCredentialDTORegion
 from .create_azure_credential_dto_service import CreateAzureCredentialDTOService
 from .create_azure_open_ai_credential_dto import CreateAzureOpenAICredentialDTO
-from .create_azure_open_ai_credential_dto_models import CreateAzureOpenAICredentialDTOModels
+from .create_azure_open_ai_credential_dto_models_item import CreateAzureOpenAICredentialDTOModelsItem
 from .create_azure_open_ai_credential_dto_provider import CreateAzureOpenAICredentialDTOProvider
 from .create_azure_open_ai_credential_dto_region import CreateAzureOpenAICredentialDTORegion
 from .create_bash_tool_dto import CreateBashToolDTO
@@ -894,15 +894,15 @@ from .update_anyscale_credential_dto import UpdateAnyscaleCredentialDTO
 from .update_assembly_ai_credential_dto import UpdateAssemblyAICredentialDTO
 from .update_assistant_dto import UpdateAssistantDTO
 from .update_assistant_dto_background_sound import UpdateAssistantDTOBackgroundSound
-from .update_assistant_dto_client_messages import UpdateAssistantDTOClientMessages
+from .update_assistant_dto_client_messages_item import UpdateAssistantDTOClientMessagesItem
 from .update_assistant_dto_first_message_mode import UpdateAssistantDTOFirstMessageMode
 from .update_assistant_dto_metadata import UpdateAssistantDTOMetadata
-from .update_assistant_dto_server_messages import UpdateAssistantDTOServerMessages
+from .update_assistant_dto_server_messages_item import UpdateAssistantDTOServerMessagesItem
 from .update_azure_credential_dto import UpdateAzureCredentialDTO
 from .update_azure_credential_dto_region import UpdateAzureCredentialDTORegion
 from .update_azure_credential_dto_service import UpdateAzureCredentialDTOService
 from .update_azure_open_ai_credential_dto import UpdateAzureOpenAICredentialDTO
-from .update_azure_open_ai_credential_dto_models import UpdateAzureOpenAICredentialDTOModels
+from .update_azure_open_ai_credential_dto_models_item import UpdateAzureOpenAICredentialDTOModelsItem
 from .update_azure_open_ai_credential_dto_region import UpdateAzureOpenAICredentialDTORegion
 from .update_bash_tool_dto import UpdateBashToolDTO
 from .update_bash_tool_dto_name import UpdateBashToolDTOName
@@ -1068,7 +1068,7 @@ __all__ = (
     "AssemblyAITranscriberProvider",
     "Assistant",
     "AssistantBackgroundSound",
-    "AssistantClientMessages",
+    "AssistantClientMessagesItem",
     "AssistantCustomEndpointingRule",
     "AssistantCustomEndpointingRuleType",
     "AssistantFirstMessageMode",
@@ -1080,13 +1080,13 @@ __all__ = (
     "AssistantMetadata",
     "AssistantOverrides",
     "AssistantOverridesBackgroundSound",
-    "AssistantOverridesClientMessages",
+    "AssistantOverridesClientMessagesItem",
     "AssistantOverridesFirstMessageMode",
     "AssistantOverridesMetadata",
-    "AssistantOverridesServerMessages",
+    "AssistantOverridesServerMessagesItem",
     "AssistantOverridesVariableValues",
     "AssistantPaginatedResponse",
-    "AssistantServerMessages",
+    "AssistantServerMessagesItem",
     "AutoReloadPlan",
     "AzureBlobStorageBucketPlan",
     "AzureCredential",
@@ -1094,7 +1094,7 @@ __all__ = (
     "AzureCredentialRegion",
     "AzureCredentialService",
     "AzureOpenAICredential",
-    "AzureOpenAICredentialModels",
+    "AzureOpenAICredentialModelsItem",
     "AzureOpenAICredentialProvider",
     "AzureOpenAICredentialRegion",
     "AzureSpeechTranscriber",
@@ -1227,16 +1227,16 @@ __all__ = (
     "CreateAssemblyAICredentialDTOProvider",
     "CreateAssistantDTO",
     "CreateAssistantDTOBackgroundSound",
-    "CreateAssistantDTOClientMessages",
+    "CreateAssistantDTOClientMessagesItem",
     "CreateAssistantDTOFirstMessageMode",
     "CreateAssistantDTOMetadata",
-    "CreateAssistantDTOServerMessages",
+    "CreateAssistantDTOServerMessagesItem",
     "CreateAzureCredentialDTO",
     "CreateAzureCredentialDTOProvider",
     "CreateAzureCredentialDTORegion",
     "CreateAzureCredentialDTOService",
     "CreateAzureOpenAICredentialDTO",
-    "CreateAzureOpenAICredentialDTOModels",
+    "CreateAzureOpenAICredentialDTOModelsItem",
     "CreateAzureOpenAICredentialDTOProvider",
     "CreateAzureOpenAICredentialDTORegion",
     "CreateBashToolDTO",
@@ -1913,15 +1913,15 @@ __all__ = (
     "UpdateAssemblyAICredentialDTO",
     "UpdateAssistantDTO",
     "UpdateAssistantDTOBackgroundSound",
-    "UpdateAssistantDTOClientMessages",
+    "UpdateAssistantDTOClientMessagesItem",
     "UpdateAssistantDTOFirstMessageMode",
     "UpdateAssistantDTOMetadata",
-    "UpdateAssistantDTOServerMessages",
+    "UpdateAssistantDTOServerMessagesItem",
     "UpdateAzureCredentialDTO",
     "UpdateAzureCredentialDTORegion",
     "UpdateAzureCredentialDTOService",
     "UpdateAzureOpenAICredentialDTO",
-    "UpdateAzureOpenAICredentialDTOModels",
+    "UpdateAzureOpenAICredentialDTOModelsItem",
     "UpdateAzureOpenAICredentialDTORegion",
     "UpdateBashToolDTO",
     "UpdateBashToolDTOName",

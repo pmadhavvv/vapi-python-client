@@ -1,3 +1,4 @@
+from collections.abc import Mapping
 from typing import TYPE_CHECKING, Any, TypeVar, Union
 
 from attrs import define as _attrs_define
@@ -64,10 +65,10 @@ class OpenAIFunction:
         return field_dict
 
     @classmethod
-    def from_dict(cls: type[T], src_dict: dict[str, Any]) -> T:
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.open_ai_function_parameters import OpenAIFunctionParameters
 
-        d = src_dict.copy()
+        d = dict(src_dict)
         name = d.pop("name")
 
         strict = d.pop("strict", UNSET)

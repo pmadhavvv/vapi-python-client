@@ -1,3 +1,4 @@
+from collections.abc import Mapping
 from typing import TYPE_CHECKING, Any, TypeVar, Union
 
 from attrs import define as _attrs_define
@@ -89,12 +90,12 @@ class UpdateByoSipTrunkCredentialDTO:
         return field_dict
 
     @classmethod
-    def from_dict(cls: type[T], src_dict: dict[str, Any]) -> T:
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.sbc_configuration import SbcConfiguration
         from ..models.sip_trunk_gateway import SipTrunkGateway
         from ..models.sip_trunk_outbound_authentication_plan import SipTrunkOutboundAuthenticationPlan
 
-        d = src_dict.copy()
+        d = dict(src_dict)
         name = d.pop("name", UNSET)
 
         gateways = []

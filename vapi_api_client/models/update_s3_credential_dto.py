@@ -1,3 +1,4 @@
+from collections.abc import Mapping
 from typing import Any, TypeVar, Union
 
 from attrs import define as _attrs_define
@@ -60,8 +61,8 @@ class UpdateS3CredentialDTO:
         return field_dict
 
     @classmethod
-    def from_dict(cls: type[T], src_dict: dict[str, Any]) -> T:
-        d = src_dict.copy()
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
+        d = dict(src_dict)
         aws_access_key_id = d.pop("awsAccessKeyId", UNSET)
 
         aws_secret_access_key = d.pop("awsSecretAccessKey", UNSET)

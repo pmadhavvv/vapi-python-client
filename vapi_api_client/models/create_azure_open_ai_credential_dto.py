@@ -1,9 +1,10 @@
+from collections.abc import Mapping
 from typing import Any, TypeVar, Union
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
-from ..models.create_azure_open_ai_credential_dto_models import CreateAzureOpenAICredentialDTOModels
+from ..models.create_azure_open_ai_credential_dto_models_item import CreateAzureOpenAICredentialDTOModelsItem
 from ..models.create_azure_open_ai_credential_dto_provider import CreateAzureOpenAICredentialDTOProvider
 from ..models.create_azure_open_ai_credential_dto_region import CreateAzureOpenAICredentialDTORegion
 from ..types import UNSET, Unset
@@ -17,7 +18,7 @@ class CreateAzureOpenAICredentialDTO:
     Attributes:
         provider (CreateAzureOpenAICredentialDTOProvider):
         region (CreateAzureOpenAICredentialDTORegion):
-        models (CreateAzureOpenAICredentialDTOModels):  Example: ['gpt-4-0125-preview', 'gpt-4-0613'].
+        models (list[CreateAzureOpenAICredentialDTOModelsItem]):  Example: ['gpt-4-0125-preview', 'gpt-4-0613'].
         open_ai_key (str): This is not returned in the API.
         open_ai_endpoint (str):
         ocp_apim_subscription_key (Union[Unset, str]): This is not returned in the API.
@@ -26,7 +27,7 @@ class CreateAzureOpenAICredentialDTO:
 
     provider: CreateAzureOpenAICredentialDTOProvider
     region: CreateAzureOpenAICredentialDTORegion
-    models: CreateAzureOpenAICredentialDTOModels
+    models: list[CreateAzureOpenAICredentialDTOModelsItem]
     open_ai_key: str
     open_ai_endpoint: str
     ocp_apim_subscription_key: Union[Unset, str] = UNSET
@@ -38,7 +39,10 @@ class CreateAzureOpenAICredentialDTO:
 
         region = self.region.value
 
-        models = self.models.value
+        models = []
+        for models_item_data in self.models:
+            models_item = models_item_data.value
+            models.append(models_item)
 
         open_ai_key = self.open_ai_key
 
@@ -67,13 +71,18 @@ class CreateAzureOpenAICredentialDTO:
         return field_dict
 
     @classmethod
-    def from_dict(cls: type[T], src_dict: dict[str, Any]) -> T:
-        d = src_dict.copy()
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
+        d = dict(src_dict)
         provider = CreateAzureOpenAICredentialDTOProvider(d.pop("provider"))
 
         region = CreateAzureOpenAICredentialDTORegion(d.pop("region"))
 
-        models = CreateAzureOpenAICredentialDTOModels(d.pop("models"))
+        models = []
+        _models = d.pop("models")
+        for models_item_data in _models:
+            models_item = CreateAzureOpenAICredentialDTOModelsItem(models_item_data)
+
+            models.append(models_item)
 
         open_ai_key = d.pop("openAIKey")
 

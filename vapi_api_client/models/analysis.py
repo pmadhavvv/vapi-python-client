@@ -1,3 +1,4 @@
+from collections.abc import Mapping
 from typing import TYPE_CHECKING, Any, TypeVar, Union
 
 from attrs import define as _attrs_define
@@ -52,10 +53,10 @@ class Analysis:
         return field_dict
 
     @classmethod
-    def from_dict(cls: type[T], src_dict: dict[str, Any]) -> T:
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.analysis_structured_data import AnalysisStructuredData
 
-        d = src_dict.copy()
+        d = dict(src_dict)
         summary = d.pop("summary", UNSET)
 
         _structured_data = d.pop("structuredData", UNSET)

@@ -1,3 +1,4 @@
+from collections.abc import Mapping
 from typing import TYPE_CHECKING, Any, TypeVar, Union
 
 from attrs import define as _attrs_define
@@ -56,10 +57,10 @@ class ClientInboundMessageAddMessage:
         return field_dict
 
     @classmethod
-    def from_dict(cls: type[T], src_dict: dict[str, Any]) -> T:
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.open_ai_message import OpenAIMessage
 
-        d = src_dict.copy()
+        d = dict(src_dict)
         type_ = ClientInboundMessageAddMessageType(d.pop("type"))
 
         message = OpenAIMessage.from_dict(d.pop("message"))

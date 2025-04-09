@@ -1,3 +1,4 @@
+from collections.abc import Mapping
 from typing import TYPE_CHECKING, Any, TypeVar, Union, cast
 
 from attrs import define as _attrs_define
@@ -189,7 +190,7 @@ class AnthropicModel:
         return field_dict
 
     @classmethod
-    def from_dict(cls: type[T], src_dict: dict[str, Any]) -> T:
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.anthropic_thinking_config import AnthropicThinkingConfig
         from ..models.create_custom_knowledge_base_dto import CreateCustomKnowledgeBaseDTO
         from ..models.create_dtmf_tool_dto import CreateDtmfToolDTO
@@ -202,7 +203,7 @@ class AnthropicModel:
         from ..models.create_voicemail_tool_dto import CreateVoicemailToolDTO
         from ..models.open_ai_message import OpenAIMessage
 
-        d = src_dict.copy()
+        d = dict(src_dict)
         model = AnthropicModelModel(d.pop("model"))
 
         provider = AnthropicModelProvider(d.pop("provider"))

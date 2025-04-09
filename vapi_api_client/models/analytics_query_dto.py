@@ -1,3 +1,4 @@
+from collections.abc import Mapping
 from typing import TYPE_CHECKING, Any, TypeVar
 
 from attrs import define as _attrs_define
@@ -37,10 +38,10 @@ class AnalyticsQueryDTO:
         return field_dict
 
     @classmethod
-    def from_dict(cls: type[T], src_dict: dict[str, Any]) -> T:
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.analytics_query import AnalyticsQuery
 
-        d = src_dict.copy()
+        d = dict(src_dict)
         queries = []
         _queries = d.pop("queries")
         for queries_item_data in _queries:

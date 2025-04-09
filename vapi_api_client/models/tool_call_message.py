@@ -1,3 +1,4 @@
+from collections.abc import Mapping
 from typing import TYPE_CHECKING, Any, TypeVar
 
 from attrs import define as _attrs_define
@@ -57,10 +58,10 @@ class ToolCallMessage:
         return field_dict
 
     @classmethod
-    def from_dict(cls: type[T], src_dict: dict[str, Any]) -> T:
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.tool_call_message_tool_calls_item import ToolCallMessageToolCallsItem
 
-        d = src_dict.copy()
+        d = dict(src_dict)
         role = d.pop("role")
 
         tool_calls = []

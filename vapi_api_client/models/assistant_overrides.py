@@ -1,12 +1,13 @@
+from collections.abc import Mapping
 from typing import TYPE_CHECKING, Any, TypeVar, Union, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
 from ..models.assistant_overrides_background_sound import AssistantOverridesBackgroundSound
-from ..models.assistant_overrides_client_messages import AssistantOverridesClientMessages
+from ..models.assistant_overrides_client_messages_item import AssistantOverridesClientMessagesItem
 from ..models.assistant_overrides_first_message_mode import AssistantOverridesFirstMessageMode
-from ..models.assistant_overrides_server_messages import AssistantOverridesServerMessages
+from ..models.assistant_overrides_server_messages_item import AssistantOverridesServerMessagesItem
 from ..types import UNSET, Unset
 
 if TYPE_CHECKING:
@@ -150,17 +151,17 @@ class AssistantOverrides:
             reached.
             You can use neither of them, one of them, or both of them. By default, Twilio built-in detection is enabled
             while VoicemailTool is not.
-        client_messages (Union[Unset, AssistantOverridesClientMessages]): These are the messages that will be sent to
-            your Client SDKs. Default is conversation-update,function-call,hang,model-output,speech-update,status-
+        client_messages (Union[Unset, list[AssistantOverridesClientMessagesItem]]): These are the messages that will be
+            sent to your Client SDKs. Default is conversation-update,function-call,hang,model-output,speech-update,status-
             update,transfer-update,transcript,tool-calls,user-interrupted,voice-input. You can check the shape of the
             messages in ClientMessage schema. Example: ['conversation-update', 'function-call', 'hang', 'model-output',
             'speech-update', 'status-update', 'transfer-update', 'transcript', 'tool-calls', 'user-interrupted', 'voice-
             input'].
-        server_messages (Union[Unset, AssistantOverridesServerMessages]): These are the messages that will be sent to
-            your Server URL. Default is conversation-update,end-of-call-report,function-call,hang,speech-update,status-
-            update,tool-calls,transfer-destination-request,user-interrupted. You can check the shape of the messages in
-            ServerMessage schema. Example: ['conversation-update', 'end-of-call-report', 'function-call', 'hang', 'speech-
-            update', 'status-update', 'tool-calls', 'transfer-destination-request', 'user-interrupted'].
+        server_messages (Union[Unset, list[AssistantOverridesServerMessagesItem]]): These are the messages that will be
+            sent to your Server URL. Default is conversation-update,end-of-call-report,function-call,hang,speech-
+            update,status-update,tool-calls,transfer-destination-request,user-interrupted. You can check the shape of the
+            messages in ServerMessage schema. Example: ['conversation-update', 'end-of-call-report', 'function-call',
+            'hang', 'speech-update', 'status-update', 'tool-calls', 'transfer-destination-request', 'user-interrupted'].
         silence_timeout_seconds (Union[Unset, float]): How many seconds of silence to wait before ending the call.
             Defaults to 30.
 
@@ -295,8 +296,8 @@ class AssistantOverrides:
     voicemail_detection: Union[
         "GoogleVoicemailDetectionPlan", "OpenAIVoicemailDetectionPlan", "TwilioVoicemailDetectionPlan", Unset
     ] = UNSET
-    client_messages: Union[Unset, AssistantOverridesClientMessages] = UNSET
-    server_messages: Union[Unset, AssistantOverridesServerMessages] = UNSET
+    client_messages: Union[Unset, list[AssistantOverridesClientMessagesItem]] = UNSET
+    server_messages: Union[Unset, list[AssistantOverridesServerMessagesItem]] = UNSET
     silence_timeout_seconds: Union[Unset, float] = UNSET
     max_duration_seconds: Union[Unset, float] = UNSET
     background_sound: Union[Unset, AssistantOverridesBackgroundSound] = UNSET
@@ -558,13 +559,19 @@ class AssistantOverrides:
         else:
             voicemail_detection = self.voicemail_detection.to_dict()
 
-        client_messages: Union[Unset, str] = UNSET
+        client_messages: Union[Unset, list[str]] = UNSET
         if not isinstance(self.client_messages, Unset):
-            client_messages = self.client_messages.value
+            client_messages = []
+            for client_messages_item_data in self.client_messages:
+                client_messages_item = client_messages_item_data.value
+                client_messages.append(client_messages_item)
 
-        server_messages: Union[Unset, str] = UNSET
+        server_messages: Union[Unset, list[str]] = UNSET
         if not isinstance(self.server_messages, Unset):
-            server_messages = self.server_messages.value
+            server_messages = []
+            for server_messages_item_data in self.server_messages:
+                server_messages_item = server_messages_item_data.value
+                server_messages.append(server_messages_item)
 
         silence_timeout_seconds = self.silence_timeout_seconds
 
@@ -823,7 +830,7 @@ class AssistantOverrides:
         return field_dict
 
     @classmethod
-    def from_dict(cls: type[T], src_dict: dict[str, Any]) -> T:
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.analysis_plan import AnalysisPlan
         from ..models.anthropic_model import AnthropicModel
         from ..models.anyscale_model import AnyscaleModel
@@ -923,7 +930,7 @@ class AssistantOverrides:
         from ..models.vapi_voice import VapiVoice
         from ..models.xai_model import XaiModel
 
-        d = src_dict.copy()
+        d = dict(src_dict)
 
         def _parse_transcriber(
             data: object,
@@ -1328,19 +1335,19 @@ class AssistantOverrides:
 
         voicemail_detection = _parse_voicemail_detection(d.pop("voicemailDetection", UNSET))
 
+        client_messages = []
         _client_messages = d.pop("clientMessages", UNSET)
-        client_messages: Union[Unset, AssistantOverridesClientMessages]
-        if isinstance(_client_messages, Unset):
-            client_messages = UNSET
-        else:
-            client_messages = AssistantOverridesClientMessages(_client_messages)
+        for client_messages_item_data in _client_messages or []:
+            client_messages_item = AssistantOverridesClientMessagesItem(client_messages_item_data)
 
+            client_messages.append(client_messages_item)
+
+        server_messages = []
         _server_messages = d.pop("serverMessages", UNSET)
-        server_messages: Union[Unset, AssistantOverridesServerMessages]
-        if isinstance(_server_messages, Unset):
-            server_messages = UNSET
-        else:
-            server_messages = AssistantOverridesServerMessages(_server_messages)
+        for server_messages_item_data in _server_messages or []:
+            server_messages_item = AssistantOverridesServerMessagesItem(server_messages_item_data)
+
+            server_messages.append(server_messages_item)
 
         silence_timeout_seconds = d.pop("silenceTimeoutSeconds", UNSET)
 

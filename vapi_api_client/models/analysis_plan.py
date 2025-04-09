@@ -1,3 +1,4 @@
+from collections.abc import Mapping
 from typing import TYPE_CHECKING, Any, TypeVar, Union
 
 from attrs import define as _attrs_define
@@ -54,12 +55,12 @@ class AnalysisPlan:
         return field_dict
 
     @classmethod
-    def from_dict(cls: type[T], src_dict: dict[str, Any]) -> T:
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.structured_data_plan import StructuredDataPlan
         from ..models.success_evaluation_plan import SuccessEvaluationPlan
         from ..models.summary_plan import SummaryPlan
 
-        d = src_dict.copy()
+        d = dict(src_dict)
         _summary_plan = d.pop("summaryPlan", UNSET)
         summary_plan: Union[Unset, SummaryPlan]
         if isinstance(_summary_plan, Unset):

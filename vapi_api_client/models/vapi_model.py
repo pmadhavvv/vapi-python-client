@@ -1,3 +1,4 @@
+from collections.abc import Mapping
 from typing import TYPE_CHECKING, Any, TypeVar, Union, cast
 
 from attrs import define as _attrs_define
@@ -195,7 +196,7 @@ class VapiModel:
         return field_dict
 
     @classmethod
-    def from_dict(cls: type[T], src_dict: dict[str, Any]) -> T:
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.create_custom_knowledge_base_dto import CreateCustomKnowledgeBaseDTO
         from ..models.create_dtmf_tool_dto import CreateDtmfToolDTO
         from ..models.create_end_call_tool_dto import CreateEndCallToolDTO
@@ -208,7 +209,7 @@ class VapiModel:
         from ..models.open_ai_message import OpenAIMessage
         from ..models.workflow import Workflow
 
-        d = src_dict.copy()
+        d = dict(src_dict)
         provider = VapiModelProvider(d.pop("provider"))
 
         model = d.pop("model")

@@ -1,3 +1,4 @@
+from collections.abc import Mapping
 from typing import TYPE_CHECKING, Any, TypeVar, Union
 
 from attrs import define as _attrs_define
@@ -114,7 +115,7 @@ class FallbackPlan:
         return field_dict
 
     @classmethod
-    def from_dict(cls: type[T], src_dict: dict[str, Any]) -> T:
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.fallback_azure_voice import FallbackAzureVoice
         from ..models.fallback_cartesia_voice import FallbackCartesiaVoice
         from ..models.fallback_custom_voice import FallbackCustomVoice
@@ -130,7 +131,7 @@ class FallbackPlan:
         from ..models.fallback_tavus_voice import FallbackTavusVoice
         from ..models.fallback_vapi_voice import FallbackVapiVoice
 
-        d = src_dict.copy()
+        d = dict(src_dict)
         voices = []
         _voices = d.pop("voices")
         for voices_item_data in _voices:

@@ -1,3 +1,4 @@
+from collections.abc import Mapping
 from typing import TYPE_CHECKING, Any, TypeVar, Union
 
 from attrs import define as _attrs_define
@@ -68,12 +69,12 @@ class CreateWebCallDTO:
         return field_dict
 
     @classmethod
-    def from_dict(cls: type[T], src_dict: dict[str, Any]) -> T:
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.assistant_overrides import AssistantOverrides
         from ..models.create_assistant_dto import CreateAssistantDTO
         from ..models.create_squad_dto import CreateSquadDTO
 
-        d = src_dict.copy()
+        d = dict(src_dict)
         assistant_id = d.pop("assistantId", UNSET)
 
         _assistant = d.pop("assistant", UNSET)

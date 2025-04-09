@@ -1,3 +1,4 @@
+from collections.abc import Mapping
 from typing import TYPE_CHECKING, Any, TypeVar
 
 from attrs import define as _attrs_define
@@ -34,10 +35,10 @@ class GeminiMultimodalLiveSpeechConfig:
         return field_dict
 
     @classmethod
-    def from_dict(cls: type[T], src_dict: dict[str, Any]) -> T:
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.gemini_multimodal_live_voice_config import GeminiMultimodalLiveVoiceConfig
 
-        d = src_dict.copy()
+        d = dict(src_dict)
         voice_config = GeminiMultimodalLiveVoiceConfig.from_dict(d.pop("voiceConfig"))
 
         gemini_multimodal_live_speech_config = cls(

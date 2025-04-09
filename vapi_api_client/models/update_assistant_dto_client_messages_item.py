@@ -1,7 +1,7 @@
 from enum import Enum
 
 
-class UpdateAssistantDTOClientMessages(str, Enum):
+class UpdateAssistantDTOClientMessagesItem(str, Enum):
     CONVERSATION_UPDATE = "conversation-update"
     FUNCTION_CALL = "function-call"
     FUNCTION_CALL_RESULT = "function-call-result"

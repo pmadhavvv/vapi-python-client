@@ -1,3 +1,4 @@
+from collections.abc import Mapping
 from typing import TYPE_CHECKING, Any, TypeVar, Union
 
 from attrs import define as _attrs_define
@@ -68,7 +69,7 @@ class ServerMessageResponse:
         return field_dict
 
     @classmethod
-    def from_dict(cls: type[T], src_dict: dict[str, Any]) -> T:
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.server_message_response_assistant_request import ServerMessageResponseAssistantRequest
         from ..models.server_message_response_knowledge_base_request import ServerMessageResponseKnowledgeBaseRequest
         from ..models.server_message_response_tool_calls import ServerMessageResponseToolCalls
@@ -77,7 +78,7 @@ class ServerMessageResponse:
         )
         from ..models.server_message_response_voice_request import ServerMessageResponseVoiceRequest
 
-        d = src_dict.copy()
+        d = dict(src_dict)
 
         def _parse_message_response(
             data: object,

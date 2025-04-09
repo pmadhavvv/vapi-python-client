@@ -1,3 +1,4 @@
+from collections.abc import Mapping
 from typing import TYPE_CHECKING, Any, TypeVar, Union
 
 from attrs import define as _attrs_define
@@ -61,14 +62,14 @@ class ClientInboundMessage:
         return field_dict
 
     @classmethod
-    def from_dict(cls: type[T], src_dict: dict[str, Any]) -> T:
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.client_inbound_message_add_message import ClientInboundMessageAddMessage
         from ..models.client_inbound_message_control import ClientInboundMessageControl
         from ..models.client_inbound_message_end_call import ClientInboundMessageEndCall
         from ..models.client_inbound_message_say import ClientInboundMessageSay
         from ..models.client_inbound_message_transfer import ClientInboundMessageTransfer
 
-        d = src_dict.copy()
+        d = dict(src_dict)
 
         def _parse_message(
             data: object,

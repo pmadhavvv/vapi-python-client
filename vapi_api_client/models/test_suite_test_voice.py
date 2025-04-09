@@ -1,4 +1,5 @@
 import datetime
+from collections.abc import Mapping
 from typing import TYPE_CHECKING, Any, TypeVar, Union
 
 from attrs import define as _attrs_define
@@ -89,10 +90,10 @@ class TestSuiteTestVoice:
         return field_dict
 
     @classmethod
-    def from_dict(cls: type[T], src_dict: dict[str, Any]) -> T:
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.test_suite_test_scorer_ai import TestSuiteTestScorerAI
 
-        d = src_dict.copy()
+        d = dict(src_dict)
         scorers = []
         _scorers = d.pop("scorers")
         for scorers_item_data in _scorers:

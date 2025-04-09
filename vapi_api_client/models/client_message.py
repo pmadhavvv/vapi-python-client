@@ -1,3 +1,4 @@
+from collections.abc import Mapping
 from typing import TYPE_CHECKING, Any, TypeVar, Union
 
 from attrs import define as _attrs_define
@@ -104,7 +105,7 @@ class ClientMessage:
         return field_dict
 
     @classmethod
-    def from_dict(cls: type[T], src_dict: dict[str, Any]) -> T:
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.client_message_conversation_update import ClientMessageConversationUpdate
         from ..models.client_message_hang import ClientMessageHang
         from ..models.client_message_language_change_detected import ClientMessageLanguageChangeDetected
@@ -119,7 +120,7 @@ class ClientMessage:
         from ..models.client_message_voice_input import ClientMessageVoiceInput
         from ..models.client_message_workflow_node_started import ClientMessageWorkflowNodeStarted
 
-        d = src_dict.copy()
+        d = dict(src_dict)
 
         def _parse_message(
             data: object,

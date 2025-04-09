@@ -1,3 +1,4 @@
+from collections.abc import Mapping
 from typing import TYPE_CHECKING, Any, TypeVar, Union
 
 from attrs import define as _attrs_define
@@ -83,10 +84,10 @@ class SummaryPlan:
         return field_dict
 
     @classmethod
-    def from_dict(cls: type[T], src_dict: dict[str, Any]) -> T:
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.summary_plan_messages_item import SummaryPlanMessagesItem
 
-        d = src_dict.copy()
+        d = dict(src_dict)
         messages = []
         _messages = d.pop("messages", UNSET)
         for messages_item_data in _messages or []:

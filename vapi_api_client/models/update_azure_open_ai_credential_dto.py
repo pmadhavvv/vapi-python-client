@@ -1,9 +1,10 @@
+from collections.abc import Mapping
 from typing import Any, TypeVar, Union
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
-from ..models.update_azure_open_ai_credential_dto_models import UpdateAzureOpenAICredentialDTOModels
+from ..models.update_azure_open_ai_credential_dto_models_item import UpdateAzureOpenAICredentialDTOModelsItem
 from ..models.update_azure_open_ai_credential_dto_region import UpdateAzureOpenAICredentialDTORegion
 from ..types import UNSET, Unset
 
@@ -15,7 +16,8 @@ class UpdateAzureOpenAICredentialDTO:
     """
     Attributes:
         region (Union[Unset, UpdateAzureOpenAICredentialDTORegion]):
-        models (Union[Unset, UpdateAzureOpenAICredentialDTOModels]):  Example: ['gpt-4-0125-preview', 'gpt-4-0613'].
+        models (Union[Unset, list[UpdateAzureOpenAICredentialDTOModelsItem]]):  Example: ['gpt-4-0125-preview',
+            'gpt-4-0613'].
         open_ai_key (Union[Unset, str]): This is not returned in the API.
         ocp_apim_subscription_key (Union[Unset, str]): This is not returned in the API.
         name (Union[Unset, str]): This is the name of credential. This is just for your reference.
@@ -23,7 +25,7 @@ class UpdateAzureOpenAICredentialDTO:
     """
 
     region: Union[Unset, UpdateAzureOpenAICredentialDTORegion] = UNSET
-    models: Union[Unset, UpdateAzureOpenAICredentialDTOModels] = UNSET
+    models: Union[Unset, list[UpdateAzureOpenAICredentialDTOModelsItem]] = UNSET
     open_ai_key: Union[Unset, str] = UNSET
     ocp_apim_subscription_key: Union[Unset, str] = UNSET
     name: Union[Unset, str] = UNSET
@@ -35,9 +37,12 @@ class UpdateAzureOpenAICredentialDTO:
         if not isinstance(self.region, Unset):
             region = self.region.value
 
-        models: Union[Unset, str] = UNSET
+        models: Union[Unset, list[str]] = UNSET
         if not isinstance(self.models, Unset):
-            models = self.models.value
+            models = []
+            for models_item_data in self.models:
+                models_item = models_item_data.value
+                models.append(models_item)
 
         open_ai_key = self.open_ai_key
 
@@ -66,8 +71,8 @@ class UpdateAzureOpenAICredentialDTO:
         return field_dict
 
     @classmethod
-    def from_dict(cls: type[T], src_dict: dict[str, Any]) -> T:
-        d = src_dict.copy()
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
+        d = dict(src_dict)
         _region = d.pop("region", UNSET)
         region: Union[Unset, UpdateAzureOpenAICredentialDTORegion]
         if isinstance(_region, Unset):
@@ -75,12 +80,12 @@ class UpdateAzureOpenAICredentialDTO:
         else:
             region = UpdateAzureOpenAICredentialDTORegion(_region)
 
+        models = []
         _models = d.pop("models", UNSET)
-        models: Union[Unset, UpdateAzureOpenAICredentialDTOModels]
-        if isinstance(_models, Unset):
-            models = UNSET
-        else:
-            models = UpdateAzureOpenAICredentialDTOModels(_models)
+        for models_item_data in _models or []:
+            models_item = UpdateAzureOpenAICredentialDTOModelsItem(models_item_data)
+
+            models.append(models_item)
 
         open_ai_key = d.pop("openAIKey", UNSET)
 

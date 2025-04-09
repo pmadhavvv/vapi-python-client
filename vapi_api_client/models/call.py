@@ -1,4 +1,5 @@
 import datetime
+from collections.abc import Mapping
 from typing import TYPE_CHECKING, Any, TypeVar, Union
 
 from attrs import define as _attrs_define
@@ -374,7 +375,7 @@ class Call:
         return field_dict
 
     @classmethod
-    def from_dict(cls: type[T], src_dict: dict[str, Any]) -> T:
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.analysis import Analysis
         from ..models.analysis_cost import AnalysisCost
         from ..models.artifact import Artifact
@@ -401,7 +402,7 @@ class Call:
         from ..models.voice_cost import VoiceCost
         from ..models.voicemail_detection_cost import VoicemailDetectionCost
 
-        d = src_dict.copy()
+        d = dict(src_dict)
         id = d.pop("id")
 
         org_id = d.pop("orgId")

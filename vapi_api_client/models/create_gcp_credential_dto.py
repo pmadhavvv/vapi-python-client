@@ -1,3 +1,4 @@
+from collections.abc import Mapping
 from typing import TYPE_CHECKING, Any, TypeVar, Union
 
 from attrs import define as _attrs_define
@@ -57,11 +58,11 @@ class CreateGcpCredentialDTO:
         return field_dict
 
     @classmethod
-    def from_dict(cls: type[T], src_dict: dict[str, Any]) -> T:
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.bucket_plan import BucketPlan
         from ..models.gcp_key import GcpKey
 
-        d = src_dict.copy()
+        d = dict(src_dict)
         provider = CreateGcpCredentialDTOProvider(d.pop("provider"))
 
         gcp_key = GcpKey.from_dict(d.pop("gcpKey"))

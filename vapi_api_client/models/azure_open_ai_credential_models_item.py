@@ -1,7 +1,7 @@
 from enum import Enum
 
 
-class CreateAzureOpenAICredentialDTOModels(str, Enum):
+class AzureOpenAICredentialModelsItem(str, Enum):
     GPT_35_TURBO_0125 = "gpt-35-turbo-0125"
     GPT_35_TURBO_1106 = "gpt-35-turbo-1106"
     GPT_4O_2024_05_13 = "gpt-4o-2024-05-13"

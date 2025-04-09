@@ -1,3 +1,4 @@
+from collections.abc import Mapping
 from typing import TYPE_CHECKING, Any, TypeVar, Union
 
 from attrs import define as _attrs_define
@@ -169,7 +170,7 @@ class ServerMessageToolCalls:
         return field_dict
 
     @classmethod
-    def from_dict(cls: type[T], src_dict: dict[str, Any]) -> T:
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.artifact import Artifact
         from ..models.bash_tool_with_tool_call import BashToolWithToolCall
         from ..models.call import Call
@@ -186,7 +187,7 @@ class ServerMessageToolCalls:
         from ..models.text_editor_tool_with_tool_call import TextEditorToolWithToolCall
         from ..models.tool_call import ToolCall
 
-        d = src_dict.copy()
+        d = dict(src_dict)
         tool_with_tool_call_list = []
         _tool_with_tool_call_list = d.pop("toolWithToolCallList")
         for tool_with_tool_call_list_item_data in _tool_with_tool_call_list:

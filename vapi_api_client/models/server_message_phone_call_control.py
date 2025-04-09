@@ -1,3 +1,4 @@
+from collections.abc import Mapping
 from typing import TYPE_CHECKING, Any, TypeVar, Union
 
 from attrs import define as _attrs_define
@@ -139,7 +140,7 @@ class ServerMessagePhoneCallControl:
         return field_dict
 
     @classmethod
-    def from_dict(cls: type[T], src_dict: dict[str, Any]) -> T:
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.artifact import Artifact
         from ..models.call import Call
         from ..models.create_assistant_dto import CreateAssistantDTO
@@ -151,7 +152,7 @@ class ServerMessagePhoneCallControl:
         from ..models.transfer_destination_number import TransferDestinationNumber
         from ..models.transfer_destination_sip import TransferDestinationSip
 
-        d = src_dict.copy()
+        d = dict(src_dict)
         type_ = ServerMessagePhoneCallControlType(d.pop("type"))
 
         request = ServerMessagePhoneCallControlRequest(d.pop("request"))

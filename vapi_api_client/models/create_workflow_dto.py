@@ -1,3 +1,4 @@
+from collections.abc import Mapping
 from typing import TYPE_CHECKING, Any, TypeVar, Union
 
 from attrs import define as _attrs_define
@@ -71,7 +72,7 @@ class CreateWorkflowDTO:
         return field_dict
 
     @classmethod
-    def from_dict(cls: type[T], src_dict: dict[str, Any]) -> T:
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.api_request import ApiRequest
         from ..models.edge import Edge
         from ..models.gather import Gather
@@ -79,7 +80,7 @@ class CreateWorkflowDTO:
         from ..models.say import Say
         from ..models.transfer import Transfer
 
-        d = src_dict.copy()
+        d = dict(src_dict)
         nodes = []
         _nodes = d.pop("nodes")
         for nodes_item_data in _nodes:

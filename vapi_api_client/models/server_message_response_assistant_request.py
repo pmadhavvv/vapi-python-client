@@ -1,3 +1,4 @@
+from collections.abc import Mapping
 from typing import TYPE_CHECKING, Any, TypeVar, Union, cast
 
 from attrs import define as _attrs_define
@@ -99,14 +100,14 @@ class ServerMessageResponseAssistantRequest:
         return field_dict
 
     @classmethod
-    def from_dict(cls: type[T], src_dict: dict[str, Any]) -> T:
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.assistant_overrides import AssistantOverrides
         from ..models.create_assistant_dto import CreateAssistantDTO
         from ..models.create_squad_dto import CreateSquadDTO
         from ..models.transfer_destination_number import TransferDestinationNumber
         from ..models.transfer_destination_sip import TransferDestinationSip
 
-        d = src_dict.copy()
+        d = dict(src_dict)
 
         def _parse_destination(data: object) -> Union["TransferDestinationNumber", "TransferDestinationSip", Unset]:
             if isinstance(data, Unset):

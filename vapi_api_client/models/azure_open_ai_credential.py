@@ -1,11 +1,12 @@
 import datetime
+from collections.abc import Mapping
 from typing import Any, TypeVar, Union
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 from dateutil.parser import isoparse
 
-from ..models.azure_open_ai_credential_models import AzureOpenAICredentialModels
+from ..models.azure_open_ai_credential_models_item import AzureOpenAICredentialModelsItem
 from ..models.azure_open_ai_credential_provider import AzureOpenAICredentialProvider
 from ..models.azure_open_ai_credential_region import AzureOpenAICredentialRegion
 from ..types import UNSET, Unset
@@ -19,7 +20,7 @@ class AzureOpenAICredential:
     Attributes:
         provider (AzureOpenAICredentialProvider):
         region (AzureOpenAICredentialRegion):
-        models (AzureOpenAICredentialModels):  Example: ['gpt-4-0125-preview', 'gpt-4-0613'].
+        models (list[AzureOpenAICredentialModelsItem]):  Example: ['gpt-4-0125-preview', 'gpt-4-0613'].
         open_ai_key (str): This is not returned in the API.
         id (str): This is the unique identifier for the credential.
         org_id (str): This is the unique identifier for the org that this credential belongs to.
@@ -32,7 +33,7 @@ class AzureOpenAICredential:
 
     provider: AzureOpenAICredentialProvider
     region: AzureOpenAICredentialRegion
-    models: AzureOpenAICredentialModels
+    models: list[AzureOpenAICredentialModelsItem]
     open_ai_key: str
     id: str
     org_id: str
@@ -48,7 +49,10 @@ class AzureOpenAICredential:
 
         region = self.region.value
 
-        models = self.models.value
+        models = []
+        for models_item_data in self.models:
+            models_item = models_item_data.value
+            models.append(models_item)
 
         open_ai_key = self.open_ai_key
 
@@ -89,13 +93,18 @@ class AzureOpenAICredential:
         return field_dict
 
     @classmethod
-    def from_dict(cls: type[T], src_dict: dict[str, Any]) -> T:
-        d = src_dict.copy()
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
+        d = dict(src_dict)
         provider = AzureOpenAICredentialProvider(d.pop("provider"))
 
         region = AzureOpenAICredentialRegion(d.pop("region"))
 
-        models = AzureOpenAICredentialModels(d.pop("models"))
+        models = []
+        _models = d.pop("models")
+        for models_item_data in _models:
+            models_item = AzureOpenAICredentialModelsItem(models_item_data)
+
+            models.append(models_item)
 
         open_ai_key = d.pop("openAIKey")
 

@@ -1,3 +1,4 @@
+from collections.abc import Mapping
 from typing import TYPE_CHECKING, Any, TypeVar
 
 from attrs import define as _attrs_define
@@ -58,11 +59,11 @@ class AnalyticsQueryResult:
         return field_dict
 
     @classmethod
-    def from_dict(cls: type[T], src_dict: dict[str, Any]) -> T:
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.analytics_query_result_result_item import AnalyticsQueryResultResultItem
         from ..models.time_range import TimeRange
 
-        d = src_dict.copy()
+        d = dict(src_dict)
         name = d.pop("name")
 
         time_range = TimeRange.from_dict(d.pop("timeRange"))

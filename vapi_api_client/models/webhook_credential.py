@@ -1,4 +1,5 @@
 import datetime
+from collections.abc import Mapping
 from typing import TYPE_CHECKING, Any, TypeVar, Union
 
 from attrs import define as _attrs_define
@@ -76,11 +77,11 @@ class WebhookCredential:
         return field_dict
 
     @classmethod
-    def from_dict(cls: type[T], src_dict: dict[str, Any]) -> T:
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.o_auth_2_authentication_plan import OAuth2AuthenticationPlan
         from ..models.oauth_2_authentication_session import Oauth2AuthenticationSession
 
-        d = src_dict.copy()
+        d = dict(src_dict)
         provider = WebhookCredentialProvider(d.pop("provider"))
 
         authentication_plan = OAuth2AuthenticationPlan.from_dict(d.pop("authenticationPlan"))

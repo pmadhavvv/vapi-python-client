@@ -1,3 +1,4 @@
+from collections.abc import Mapping
 from typing import TYPE_CHECKING, Any, TypeVar, Union
 
 from attrs import define as _attrs_define
@@ -42,10 +43,10 @@ class UpdateWebhookCredentialDTO:
         return field_dict
 
     @classmethod
-    def from_dict(cls: type[T], src_dict: dict[str, Any]) -> T:
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.o_auth_2_authentication_plan import OAuth2AuthenticationPlan
 
-        d = src_dict.copy()
+        d = dict(src_dict)
         _authentication_plan = d.pop("authenticationPlan", UNSET)
         authentication_plan: Union[Unset, OAuth2AuthenticationPlan]
         if isinstance(_authentication_plan, Unset):

@@ -1,3 +1,4 @@
+from collections.abc import Mapping
 from typing import TYPE_CHECKING, Any, TypeVar, Union
 
 from attrs import define as _attrs_define
@@ -51,10 +52,10 @@ class CreateTokenDTO:
         return field_dict
 
     @classmethod
-    def from_dict(cls: type[T], src_dict: dict[str, Any]) -> T:
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.token_restrictions import TokenRestrictions
 
-        d = src_dict.copy()
+        d = dict(src_dict)
         _tag = d.pop("tag", UNSET)
         tag: Union[Unset, CreateTokenDTOTag]
         if isinstance(_tag, Unset):

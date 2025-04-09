@@ -1,7 +1,7 @@
 from enum import Enum
 
 
-class AssistantOverridesServerMessages(str, Enum):
+class UpdateAssistantDTOServerMessagesItem(str, Enum):
     CONVERSATION_UPDATE = "conversation-update"
     END_OF_CALL_REPORT = "end-of-call-report"
     FUNCTION_CALL = "function-call"

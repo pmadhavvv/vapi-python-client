@@ -1,3 +1,4 @@
+from collections.abc import Mapping
 from typing import TYPE_CHECKING, Any, TypeVar, Union
 
 from attrs import define as _attrs_define
@@ -64,13 +65,13 @@ class ServerMessageResponseTransferDestinationRequest:
         return field_dict
 
     @classmethod
-    def from_dict(cls: type[T], src_dict: dict[str, Any]) -> T:
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.transfer_destination_assistant import TransferDestinationAssistant
         from ..models.transfer_destination_number import TransferDestinationNumber
         from ..models.transfer_destination_sip import TransferDestinationSip
         from ..models.transfer_destination_step import TransferDestinationStep
 
-        d = src_dict.copy()
+        d = dict(src_dict)
 
         def _parse_destination(
             data: object,

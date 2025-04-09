@@ -1,3 +1,4 @@
+from collections.abc import Mapping
 from typing import TYPE_CHECKING, Any, TypeVar, Union
 
 from attrs import define as _attrs_define
@@ -126,7 +127,7 @@ class ServerMessageSpeechUpdate:
         return field_dict
 
     @classmethod
-    def from_dict(cls: type[T], src_dict: dict[str, Any]) -> T:
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.artifact import Artifact
         from ..models.call import Call
         from ..models.create_assistant_dto import CreateAssistantDTO
@@ -136,7 +137,7 @@ class ServerMessageSpeechUpdate:
         from ..models.create_vapi_phone_number_dto import CreateVapiPhoneNumberDTO
         from ..models.create_vonage_phone_number_dto import CreateVonagePhoneNumberDTO
 
-        d = src_dict.copy()
+        d = dict(src_dict)
         type_ = ServerMessageSpeechUpdateType(d.pop("type"))
 
         status = ServerMessageSpeechUpdateStatus(d.pop("status"))
