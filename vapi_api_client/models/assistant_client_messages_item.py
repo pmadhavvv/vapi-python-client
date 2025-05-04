@@ -18,5 +18,8 @@ class AssistantClientMessagesItem(str, Enum):
     USER_INTERRUPTED = "user-interrupted"
     VOICE_INPUT = "voice-input"
 
+    # Add to avoid errors
+    WORKFLOW_NODE_STARTED = "workflow.node.started"
+
     def __str__(self) -> str:
         return str(self.value)
