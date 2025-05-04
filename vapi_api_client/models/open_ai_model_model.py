@@ -31,5 +31,10 @@ class OpenAIModelModel(str, Enum):
     O1_PREVIEW_2024_09_12 = "o1-preview-2024-09-12"
     O3_MINI = "o3-mini"
 
+     # New models
+    GPT_4_1 = "gpt-4.1"
+    GPT_4_1_MINI = "gpt-4.1-mini"
+    GPT_4_1_NANO = "gpt-4.1-nano"
+
     def __str__(self) -> str:
         return str(self.value)
